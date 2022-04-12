@@ -13,3 +13,19 @@ int main ( void )
 }
 ```
 should write "0.8\n" in buf[], but instead it writes "0.2\n".
+
+## To replicate
+
+* Open the project in MPLAB.X IDE v6.00
+* Compile and load the project into a SAME70 XULT demonstration board
+* Place a breakpoint at the `asm("nop")` statement in `main()`
+* Run the program until it hits the breakpoint
+* Examine the contents of buf[], observe that it contains "0.2\n"
+
+## Workaround
+
+None known.
+
+## Comment
+
+This is a serious bug because it will produce erroneous output with no indication that it's erroneous.
