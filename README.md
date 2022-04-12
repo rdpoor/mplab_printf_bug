@@ -29,3 +29,10 @@ None known.
 ## Comment
 
 This is a serious bug because it will produce erroneous output with no indication that it's erroneous.
+
+## Updates
+
+The same problem has been observed in:
+* XC32 v3.0.1 with SAME70_DFP v4.4.78, v4.5.86, v4.6.98
+* XC32 v3.0.1 with SAME70_DFP 4.7.120 won't compile due to a previously reported bug
+
