@@ -46,9 +46,8 @@ produces the following output (with comments annotated):
 
 * Open the project in MPLAB.X IDE v6.00
 * Compile and load the project into a SAME70 XULT demonstration board
-* Place a breakpoint at the `asm("nop")` statement in `main()`
-* Run the program until it hits the breakpoint
-* Examine the contents of buf[], observe that it contains "0.2\n"
+* Launch a serial terminal (e.g. puTTY, TeraTerm, CoolTerm) on the EDBG serial output
+* Examine the resulting output on the serial terminal.
 
 ## Workaround
 
