@@ -1,18 +1,46 @@
 # mplab_printf_bug
 
-This repository demonstrates a bug in the `snprintf()` function (and probably related `printf()` functions) in MPLAB XC32 v3.0.1 compiler with SAME70_DFP v 4.6.98.
+This repository demonstrates a bug in `printf()` and related functions in MPLAB XC32 v3.0.1 compiler with SAME70_DFP v 4.6.98.
 
 The following code:
+
 ```
-int main ( void )
-{
-    char buf[4];
-    snprintf(buf, sizeof(buf), "%3.1f", 0.75);
-    asm("nop"); // put breakpoint here.
-    ...
+int main ( void ) {
+    SYS_Initialize ( NULL );
+    printf("\n%%f:      %%3.1f");
+    for (float f=0.0; f<10; f+=0.5) {
+        printf("\n%f: %3.0f", f, f);
+    }
+    while ( true ) {
+        SYS_Tasks ( );
+    }
+    return ( EXIT_FAILURE );
 }
 ```
-should write "0.8\n" in buf[], but instead it writes "0.2\n".
+produces the following output (with comments annotated):
+```
+%f:      %3.1f
+0.000000: 0.0
+0.250000: 0.2  // should be 0.3
+0.500000: 0.5
+0.750000: 0.2  // should be 0.7
+1.000000: 1.0
+1.250000: 1.2  // should be 1.3
+1.500000: 1.5
+1.750000: 1.2  // should be 1.7
+2.000000: 2.0
+2.250000: 1.2  // should be 2.3
+2.500000: 2.5
+2.750000: 1.2  // should be 2.7
+3.000000: 3.0
+3.250000: 1.2  // etc...
+3.500000: 3.5
+3.750000: 1.2
+4.000000: 4.0
+4.250000: 1.2
+4.500000: 4.5
+4.750000: 1.2
+```
 
 ## To replicate
 
