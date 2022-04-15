@@ -40,25 +40,15 @@
 // but instead it prints:
 //    "0.0, 0.2, 0.5, 0.2, 1.0. 1.2, 1.5, 1.2, 2.0, 1.2, 2.5, 1.2, 3.0, 1.2..."
 
-int main ( void )
-{
-
-    /* Initialize all modules */
+int main ( void ) {
     SYS_Initialize ( NULL );
-
     printf("\n%%f:      %%3.1f");
     for (float f=0.0; f<10; f+=0.25) {
         printf("\n%f: %3.1f", f, f);
     }
-
-    while ( true )
-    {
-        /* Maintain state machines of all polled MPLAB Harmony modules. */
+    while ( true ) {
         SYS_Tasks ( );
     }
-
-    /* Execution should not come here during normal operation */
-
     return ( EXIT_FAILURE );
 }
 
